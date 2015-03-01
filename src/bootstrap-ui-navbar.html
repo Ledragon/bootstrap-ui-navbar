@@ -12,12 +12,15 @@
         </div>
         <div class="collapse navbar-collapse" id="navbar-menu">
             <ul class="nav navbar-nav">
-                <li> <a href="#"> State1</a>
+            <li ng-repeat="state in states">
+                <a ui-sref="{{state.url}}">{{state.name}}</a>
+            </li>
+<!--                <li> <a href="#"> State1</a>
                 </li>
                 <li> <a href="#"> State2</a>
                 </li>
                 <li> <a href="#"> State3</a>
-                </li>
+                </li>-->
             </ul>
 
         </div>
