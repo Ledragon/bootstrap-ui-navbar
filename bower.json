@@ -1,0 +1,27 @@
+{
+  "name": "bootstrap-ui-navbar",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Ledragon/bootstrap-ui-navbar",
+  "authors": [
+    "Ledragon <hugues.stefanski@gmail.com>"
+  ],
+  "description": "Navbar for angular-ui-router based on bootstrap styles",
+  "main": "dist/bootstrap-ui-navbar.js",
+  "keywords": [
+    "angular",
+    "ui-router",
+    "bootstrap"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-ui-router": "~0.2.13",
+    "bootstrap": "~3.3.2"
+  }
+}
