@@ -3,22 +3,13 @@ var gulp = require('gulp');
 var $ = require('gulp-load-plugins')({
     lazy: true
 });
-
-/*// jshint+jscs: javascript linting
-var jshint = require('gulp-jshint');
-var jscs = require('gulp-jscs');
-//gulp-util: utilities, such as logging
-var util = require('gulp-util');
-//gulp-print: print things
-var gulpprint = require('gulp-print');*/
+var config = require('./gulp.config')();
+var del = require('del');
 
 gulp.task('vet', function () {
     log('Analyzing files with JSHint and JSCS');
     return gulp
-        .src([
-            './src/**/*.js',
-            './*.js'
-        ])
+        .src(config.alljs)
         .pipe($.print())
         .pipe($.jscs())
         .pipe($.jshint())
@@ -26,6 +17,23 @@ gulp.task('vet', function () {
             verbose: true
         }))
         .pipe($.jshint.reporter('fail'));
+});
+
+gulp.task('clean-code', function () {
+    log('Cleaning temporary directory');
+
+    var files = config.temp + '/**/*.*';
+    del(files);
+});
+
+gulp.task('templatecache', ['clean-code'], function () {
+    log('Creating AngularJS $templateCache');
+    return gulp.src(config.htmlTemplates)
+        .pipe($.minifyHtml({
+            empty: true
+        }))
+        .pipe($.angularTemplatecache(config.templateCache.file, config.templateCache.options))
+        .pipe(gulp.dest(config.temp));
 });
 
 //////////////////////////////////////////////////////
