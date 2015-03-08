@@ -15,7 +15,9 @@
                             scope.states.push(s);
                         }
                     });
-
+                    scope.isCurrent = function (stateName) {
+                        return stateName === $state.current.name;
+                    };
                 }
             };
         }]);

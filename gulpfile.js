@@ -42,12 +42,13 @@ gulp.task('copy', function () {
         .pipe($.copy('./_tmp'));
 });
 
-gulp.task('concat', function () {
+gulp.task('concat', ['templatecache', 'copy'], function () {
     log('Concatenating source files');
-    return gulp.src('./_tmp/**/*.js')
+    return gulp.src(['./_tmp/src/**/*.js', './_tmp/template.js'])
         .pipe($.concat('bootstrap-ui-navbar.js'))
         .pipe(gulp.dest('./dist'));
 });
+
 //////////////////////////////////////////////////////
 function log(message) {
     if (typeof (message) === 'object') {

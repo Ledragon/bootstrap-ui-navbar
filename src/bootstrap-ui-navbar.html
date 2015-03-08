@@ -12,7 +12,7 @@
         </div>
         <div class="collapse navbar-collapse" id="navbar-menu">
             <ul class="nav navbar-nav">
-                <li ng-repeat="state in states">
+                <li ng-class="{active: isCurrent(state.name)}" ng-repeat="state in states">
                     <a ui-sref="{{state.name}}">{{state.name}}</a>
                 </li>
             </ul>
