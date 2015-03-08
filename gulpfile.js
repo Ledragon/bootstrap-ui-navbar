@@ -36,6 +36,18 @@ gulp.task('templatecache', ['clean-code'], function () {
         .pipe(gulp.dest(config.temp));
 });
 
+gulp.task('copy', function () {
+    log('Copying source files');
+    return gulp.src('./src/*.js')
+        .pipe($.copy('./_tmp'));
+});
+
+gulp.task('concat', function () {
+    log('Concatenating source files');
+    return gulp.src('./_tmp/**/*.js')
+        .pipe($.concat('bootstrap-ui-navbar.js'))
+        .pipe(gulp.dest('./dist'));
+});
 //////////////////////////////////////////////////////
 function log(message) {
     if (typeof (message) === 'object') {
